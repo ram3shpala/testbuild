@@ -28,8 +28,7 @@ spec:
       script: |
         #!/usr/bin/env bash
         buildah bud --layers -t $DESTINATION_IMAGE $CONTEXT_DIR
-        buildah push --tls-verify=false $DESTINATION_IMAGE docker:
-          //$DESTINATION_IMAGE
+        buildah push --tls-verify=false $DESTINATION_IMAGE docker://$DESTINATION_IMAGE
       env:
         - name: DESTINATION_IMAGE
           value: "$(inputs.params.imageName)"
