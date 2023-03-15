@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: welcome-service-git-source
+spec:
+  type: git
+  params:
+    - name: url
+      value: https://github.com/ram3shpala/kubernetes-secrets-source.git

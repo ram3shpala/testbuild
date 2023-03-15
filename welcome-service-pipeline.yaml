@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: welcome-deployment
+spec:
+  resources:
+    - name: appSource
+      type: git
+  params:
+    - name: imageTag
+      type: string
+      description: image tag
+      default: v1
+  tasks:
+    - name: welcome-service-app
+      taskRef:
+        name: welcome-service-app
+      params:
+        - name: contextDir
+          value: welcome-message
+        - name: imageName
+          value: "registry:5000/k8ssecrets/
+          welcome-message:$(params.imageTag)"
+      resources:
+        inputs:
+          - name: source
+            resource: appSource
